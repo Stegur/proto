@@ -7,5 +7,15 @@ export default function Character(name, type) {
 }
 
 Character.prototype.damage = function (points) {
-  this.health = points * (1 - this.defence / 100);
+  const damage = points * (1 - this.defence / 100);
+
+  if (damage >= this.health) {
+    this.health = 0;
+  } else {
+    this.health -= damage;
+  }
+
+  if (this.health === 0) {
+    console.log(`Персонаж ${this.name} убит`);
+  }
 };
